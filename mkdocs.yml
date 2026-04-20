@@ -1,0 +1,19 @@
+# サイトの基本情報
+site_name: 社内 Knowledge Space（練習）
+
+# Materialテーマを使う設定
+theme:
+  name: material
+  language: ja          # 日本語対応
+  features:
+    - navigation.tabs   # 上部にタブナビゲーションを表示
+    - search.suggest    # 検索サジェストを有効化
+
+# 検索機能を有効化
+plugins:
+  - search
+
+# ナビゲーション構造を定義する
+nav:
+  - ホーム: index.md
+  - ガイド: guide.md
