@@ -1,0 +1,30 @@
+# このワークフローの名前
+name: Deploy MkDocs to GitHub Pages
+
+# 「いつ動かすか」の定義
+# mainブランチにpushされたときだけ実行する
+on:
+  push:
+    branches:
+      - main
+
+# 「何をするか」の定義
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # GitHubのLinuxサーバー上で実行する
+
+    steps:
+      # リポジトリのファイルをActionsの実行環境にコピーしてくる
+      - uses: actions/checkout@v4
+
+      # Pythonをセットアップする
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      # mkdocs-materialをインストールする
+      - run: pip install mkdocs-material
+
+      # mkdocs gh-deployコマンドでビルド＆GitHub Pagesに公開する
+      # --force は既存の内容を上書きするオプション
+      - run: mkdocs gh-deploy --force
